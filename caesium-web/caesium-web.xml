@@ -7,7 +7,7 @@
   <MyIP/>
   <Shell>sh</Shell>
   <Privileged>false</Privileged>
-  <Support>https://hub.docker.com/r/lymphatus/caesium-app-web/</Support>
+  <Support>https://forums.unraid.net/topic/192298-support-soitoras-unraid-templates/</Support>
   <Project>https://github.com/lymphatus/caesium-app-web/</Project>
   <Overview>A modern, privacy aware web app to compress images, all offline and within the browser.</Overview>
   <Category>Tools: MediaApp:Photos Network:Web</Category>

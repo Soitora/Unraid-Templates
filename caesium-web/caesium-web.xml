@@ -18,8 +18,8 @@
   <PostArgs/>
   <CPUset/>
   <DateInstalled>1753537385</DateInstalled>
-  <DonateText/>
-  <DonateLink/>
+  <DonateText>Support the project</DonateText>
+  <DonateLink>https://caesium.app/donate</DonateLink>
   <Requires/>
   <Config Name="WebUI Port" Target="3000" Default="3000" Mode="tcp" Description="" Type="Port" Display="always" Required="false" Mask="false">3000</Config>
   <Config Name="Max batch file count" Target="NUXT_PUBLIC_COMPRESSOR_MAX_FILES" Default="5" Mode="" Description="Amount of files allowed to be added to the list in the same batch." Type="Variable" Display="always" Required="true" Mask="false">5</Config>

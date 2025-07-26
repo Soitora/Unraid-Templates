@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Maintainer>
+  <Icon>https://raw.githubusercontent.com/Soitora/Unraid-Templates/refs/heads/main/soitora/avatar.jpg</Icon>
+  <Profile>
+    I am adding Unraid Community Application templates for containers I have set up and not found in the Application store.
+  </Profile>
+  <DonateLink>https://ko-fi.com/soitora</DonateLink>
+  <DonateText>If you like my work please consider Donating.</DonateText>
+</Maintainer>

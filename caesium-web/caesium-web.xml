@@ -1,10 +1,9 @@
 <?xml version="1.0"?>
 <Container version="2">
   <Name>caesium-web</Name>
-  <Repository>lymphatus/caesium-app-web</Repository>
+  <Repository>lymphatus/caesium-app-web:latest</Repository>
   <Registry>https://hub.docker.com/r/lymphatus/caesium-app-web/</Registry>
   <Network>bridge</Network>
-  <MyIP/>
   <Shell>sh</Shell>
   <Privileged>false</Privileged>
   <Support>https://forums.unraid.net/topic/192298-support-soitoras-unraid-templates/</Support>
@@ -12,19 +11,13 @@
   <Overview>A modern, privacy aware web app to compress images, all offline and within the browser.</Overview>
   <Category>Tools: MediaApp:Photos Network:Web</Category>
   <WebUI>http://[IP]:[PORT:3000]</WebUI>
-  <TemplateURL/>
+  <TemplateURL>https://raw.githubusercontent.com/Soitora/Unraid-Templates/refs/heads/main/caesium-web/caesium-web.xml</TemplateURL>
   <Icon>https://raw.githubusercontent.com/Soitora/Unraid-Templates/refs/heads/main/caesium-web/logo.png</Icon>
-  <ExtraParams/>
-  <PostArgs/>
-  <CPUset/>
-  <DateInstalled>1753537385</DateInstalled>
   <DonateText>Support the project</DonateText>
   <DonateLink>https://caesium.app/donate</DonateLink>
-  <Requires/>
   <Config Name="WebUI Port" Target="3000" Default="3000" Mode="tcp" Description="" Type="Port" Display="always" Required="false" Mask="false">3000</Config>
   <Config Name="Max batch file count" Target="NUXT_PUBLIC_COMPRESSOR_MAX_FILES" Default="5" Mode="" Description="Amount of files allowed to be added to the list in the same batch." Type="Variable" Display="always" Required="true" Mask="false">5</Config>
   <Config Name="Max file size for each image" Target="NUXT_PUBLIC_COMPRESSOR_MAX_FILE_SIZE" Default="20000000" Mode="" Description="Max limit for each image size, in bytes." Type="Variable" Display="always" Required="true" Mask="false">20000000</Config>
   <Config Name="Public API Endpoint" Target="NUXT_PUBLIC_API_ENDPOINT" Default="" Mode="" Description="The endpoint where you can send compression stats." Type="Variable" Display="advanced" Required="false" Mask="false"/>
   <Config Name="Send usage reports" Target="NUXT_PUBLIC_SEND_USAGE_REPORT" Default="false" Mode="" Description="Send usage stats for the compressed images to the NUXT_PUBLIC_API_ENDPOINT. Set it to false if you don't care about it." Type="Variable" Display="advanced" Required="true" Mask="false">false</Config>
-  <TailscaleStateDir/>
 </Container>

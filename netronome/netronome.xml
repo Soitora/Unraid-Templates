@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<Container version="2">
+  <Name>netronome</Name>
+  <Repository>ghcr.io/autobrr/netronome:latest</Repository>
+  <Network>bridge</Network>
+  <Shell>sh</Shell>
+  <Privileged>false</Privileged>
+  <Support>https://forums.unraid.net/topic/192298-support-soitoras-unraid-templates/</Support>
+  <Project>https://github.com/autobrr/netronome</Project>
+  <Overview>Netronome is a modern network speed testing and monitoring tool built with Go and React.&#13;
+&#13;
+If you run into permission issues, run "chmod 777" for the netronome parent folder. You can also check to make sure that the folders are set to 101:102 rather than Unraid default of 99:100.</Overview>
+  <Category>Tools: Network:Web Network:Other</Category>
+  <WebUI>http://[IP]:[PORT:7575]/</WebUI>
+  <TemplateURL>https://raw.githubusercontent.com/Soitora/Unraid-Templates/refs/heads/main/netronome/netronome.xml</TemplateURL>
+  <Icon>https://raw.githubusercontent.com/Soitora/Unraid-Templates/refs/heads/main/netronome/logo.png</Icon>
+  <ExtraParams>--cap-add=NET_RAW --cap-add=NET_ADMIN --health-cmd='pg_isready -U netronome' --health-interval=5s --health-retries=5 --health-timeout=5s</ExtraParams>
+  <DonateText>Support the project</DonateText>
+  <DonateLink>https://github.com/autobrr/netronome</DonateLink>
+  <Config Name="Web UI port" Target="7575" Default="7575" Mode="tcp" Description="" Type="Port" Display="always" Required="true" Mask="false">7575</Config>
+  <Config Name="Session secret" Target="NETRONOME__SESSION_SECRET" Default="" Mode="" Description="Auto-generated if empty." Type="Variable" Display="always" Required="false" Mask="true"/>
+  <Config Name="Data" Target="/data" Default="/mnt/user/appdata/netronome" Mode="rw,shared" Description="" Type="Path" Display="always" Required="false" Mask="false">/mnt/user/appdata/netronome</Config>
+  <Config Name="Listen address" Target="NETRONOME__HOST" Default="0.0.0.0" Mode="" Description="" Type="Variable" Display="advanced" Required="true" Mask="false">0.0.0.0</Config>
+  <Config Name="Database type" Target="NETRONOME__DB_TYPE" Default="sqlite" Mode="" Description="Choose between sqlite and postgres." Type="Variable" Display="advanced" Required="true" Mask="false">sqlite</Config>
+  <Config Name="SQLite Database path" Target="NETRONOME__DB_PATH" Default="/data/netronome/netronome.db" Mode="" Description="" Type="Variable" Display="advanced" Required="false" Mask="false">/data/netronome/netronome.db</Config>
+  <Config Name="PostgreSQL Database host" Target="NETRONOME__DB_HOST" Default="localhost" Mode="" Description="" Type="Variable" Display="advanced" Required="false" Mask="false">localhost</Config>
+  <Config Name="PostgreSQL Database port" Target="NETRONOME__DB_PORT" Default="5432" Mode="" Description="" Type="Variable" Display="advanced" Required="false" Mask="false">5432</Config>
+  <Config Name="PostgreSQL Database user" Target="NETRONOME__DB_USER" Default="postgres" Mode="" Description="" Type="Variable" Display="advanced" Required="false" Mask="false">postgres</Config>
+  <Config Name="PostgreSQL Database password" Target="NETRONOME__DB_PASSWORD" Default="secret" Mode="" Description="" Type="Variable" Display="advanced" Required="false" Mask="true">secret</Config>
+  <Config Name="PostgreSQL Database name" Target="NETRONOME__DB_NAME" Default="netronome" Mode="" Description="" Type="Variable" Display="advanced" Required="false" Mask="false">netronome</Config>
+  <Config Name="PostgreSQL Database SSL mode" Target="NETRONOME__DB_SSLMODE" Default="disable" Mode="" Description="" Type="Variable" Display="advanced" Required="false" Mask="false">disable</Config>
+  <Config Name="PUID" Target="PUID" Default="99" Mode="" Description="" Type="Variable" Display="advanced" Required="false" Mask="false">101</Config>
+  <Config Name="PGID" Target="PGID" Default="100" Mode="" Description="" Type="Variable" Display="advanced" Required="false" Mask="false">102</Config>
+  <Config Name="UMASK" Target="UMASK" Default="002" Mode="" Description="" Type="Variable" Display="advanced" Required="false" Mask="false">022</Config>
+</Container>

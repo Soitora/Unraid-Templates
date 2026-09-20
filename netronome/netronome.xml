@@ -14,7 +14,7 @@ If you run into permission issues, run "chmod 777" for the netronome parent fold
   <WebUI>http://[IP]:[PORT:7575]/</WebUI>
   <TemplateURL>https://raw.githubusercontent.com/Soitora/Unraid-Templates/refs/heads/main/netronome/netronome.xml</TemplateURL>
   <Icon>https://raw.githubusercontent.com/Soitora/Unraid-Templates/refs/heads/main/netronome/logo.png</Icon>
-  <ExtraParams>--cap-add=NET_RAW --cap-add=NET_ADMIN --health-cmd='pg_isready -U netronome' --health-interval=5s --health-retries=5 --health-timeout=5s</ExtraParams>
+  <ExtraParams>--cap-add=NET_RAW --cap-add=NET_ADMIN</ExtraParams>
   <DonateText>Support the project</DonateText>
   <DonateLink>https://github.com/autobrr/netronome</DonateLink>
   <Config Name="Web UI port" Target="7575" Default="7575" Mode="tcp" Description="" Type="Port" Display="always" Required="true" Mask="false">7575</Config>

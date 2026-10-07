@@ -20,4 +20,7 @@
   <Config Name="Max file size for each image" Target="NUXT_PUBLIC_COMPRESSOR_MAX_FILE_SIZE" Default="20000000" Mode="" Description="Max limit for each image size, in bytes." Type="Variable" Display="always" Required="true" Mask="false">20000000</Config>
   <Config Name="Public API Endpoint" Target="NUXT_PUBLIC_API_ENDPOINT" Default="" Mode="" Description="The endpoint where you can send compression stats." Type="Variable" Display="advanced" Required="false" Mask="false"/>
   <Config Name="Send usage reports" Target="NUXT_PUBLIC_SEND_USAGE_REPORT" Default="false" Mode="" Description="Send usage stats for the compressed images to the NUXT_PUBLIC_API_ENDPOINT. Set it to false if you don't care about it." Type="Variable" Display="advanced" Required="true" Mask="false">false</Config>
+  <Config Name="PUID" Target="PUID" Default="99" Mode="" Description="" Type="Variable" Display="advanced" Required="false" Mask="false">99</Config>
+  <Config Name="PGID" Target="PGID" Default="100" Mode="" Description="" Type="Variable" Display="advanced" Required="false" Mask="false">100</Config>
+  <Config Name="UMASK" Target="UMASK" Default="002" Mode="" Description="" Type="Variable" Display="advanced" Required="false" Mask="false">002</Config>
 </Container>

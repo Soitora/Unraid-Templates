@@ -14,7 +14,7 @@ The app has no authentication. Do not expose its web interface to the public int
   <WebUI>http://[IP]:[PORT:5001]/</WebUI>
   <TemplateURL>https://raw.githubusercontent.com/Soitora/Unraid-Templates/refs/heads/main/jellyfin-poster-manager/jellyfin-poster-manager.xml</TemplateURL>
   <Icon>https://raw.githubusercontent.com/Soitora/Unraid-Templates/refs/heads/main/jellyfin-poster-manager/logo.png</Icon>
-  <Config Name="Web UI port" Target="5001" Default="5001" Mode="tcp" Description="The browser-accessible port for the application." Type="Port" Display="always" Required="true" Mask="false">5001</Config>
+  <Config Name="WebUI port" Target="5001" Default="5001" Mode="tcp" Description="The browser-accessible port for the application." Type="Port" Display="always" Required="true" Mask="false">5001</Config>
   <Config Name="Jellyfin URL" Target="JELLYFIN_URL" Default="" Mode="" Description="A URL reachable from this container, such as http://192.168.1.10:8096. Do not use localhost for Jellyfin running on the Unraid host." Type="Variable" Display="always" Required="true" Mask="false"/>
   <Config Name="Jellyfin API key" Target="JELLYFIN_API_KEY" Default="" Mode="" Description="Create an API key in Jellyfin Dashboard &gt; API Keys." Type="Variable" Display="always" Required="true" Mask="true"/>
   <Config Name="ThePosterDB email" Target="TPDB_EMAIL" Default="" Mode="" Description="The email address for the ThePosterDB account used to search for posters." Type="Variable" Display="always" Required="true" Mask="false"/>
@@ -34,7 +34,7 @@ The app has no authentication. Do not expose its web interface to the public int
   <Config Name="ThePosterDB batch delay (seconds)" Target="TPDB_BATCH_DELAY_SEC" Default="1.5" Mode="" Description="Delay between ThePosterDB batch requests." Type="Variable" Display="advanced" Required="true" Mask="false">1.5</Config>
   <Config Name="Picker cache maximum age (days)" Target="TPDB_PICKER_CACHE_MAX_AGE_DAYS" Default="7" Mode="" Description="How long disposable picker metadata remains cached." Type="Variable" Display="advanced" Required="true" Mask="false">7</Config>
   <Config Name="ThePosterDB debug snapshots" Target="TPDB_DEBUG_SNAPSHOTS" Default="false" Mode="" Description="Save ThePosterDB challenge pages to the logs directory. Enable only while troubleshooting." Type="Variable" Display="advanced" Required="true" Mask="false">false</Config>
-  <Config Name="PUID" Target="PUID" Default="99" Mode="" Description="" Type="Variable" Display="advanced" Required="false" Mask="false">101</Config>
-  <Config Name="PGID" Target="PGID" Default="100" Mode="" Description="" Type="Variable" Display="advanced" Required="false" Mask="false">102</Config>
-  <Config Name="UMASK" Target="UMASK" Default="002" Mode="" Description="" Type="Variable" Display="advanced" Required="false" Mask="false">022</Config>
+  <Config Name="PUID" Target="PUID" Default="99" Mode="" Description="" Type="Variable" Display="advanced" Required="false" Mask="false">99</Config>
+  <Config Name="PGID" Target="PGID" Default="100" Mode="" Description="" Type="Variable" Display="advanced" Required="false" Mask="false">100</Config>
+  <Config Name="UMASK" Target="UMASK" Default="002" Mode="" Description="" Type="Variable" Display="advanced" Required="false" Mask="false">002</Config>
 </Container>

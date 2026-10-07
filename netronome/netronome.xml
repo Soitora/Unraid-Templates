@@ -17,7 +17,7 @@ If you run into permission issues, run "chmod 777" for the netronome parent fold
   <ExtraParams>--cap-add=NET_RAW --cap-add=NET_ADMIN</ExtraParams>
   <DonateText>Support the project</DonateText>
   <DonateLink>https://github.com/autobrr/netronome</DonateLink>
-  <Config Name="Web UI port" Target="7575" Default="7575" Mode="tcp" Description="" Type="Port" Display="always" Required="true" Mask="false">7575</Config>
+  <Config Name="WebUI port" Target="7575" Default="7575" Mode="tcp" Description="" Type="Port" Display="always" Required="true" Mask="false">7575</Config>
   <Config Name="Session secret" Target="NETRONOME__SESSION_SECRET" Default="" Mode="" Description="Auto-generated if empty." Type="Variable" Display="always" Required="false" Mask="true"/>
   <Config Name="Data" Target="/data" Default="/mnt/user/appdata/netronome" Mode="rw,shared" Description="" Type="Path" Display="always" Required="false" Mask="false">/mnt/user/appdata/netronome</Config>
   <Config Name="Listen address" Target="NETRONOME__HOST" Default="0.0.0.0" Mode="" Description="" Type="Variable" Display="advanced" Required="true" Mask="false">0.0.0.0</Config>
@@ -29,7 +29,7 @@ If you run into permission issues, run "chmod 777" for the netronome parent fold
   <Config Name="PostgreSQL Database password" Target="NETRONOME__DB_PASSWORD" Default="secret" Mode="" Description="" Type="Variable" Display="advanced" Required="false" Mask="true">secret</Config>
   <Config Name="PostgreSQL Database name" Target="NETRONOME__DB_NAME" Default="netronome" Mode="" Description="" Type="Variable" Display="advanced" Required="false" Mask="false">netronome</Config>
   <Config Name="PostgreSQL Database SSL mode" Target="NETRONOME__DB_SSLMODE" Default="disable" Mode="" Description="" Type="Variable" Display="advanced" Required="false" Mask="false">disable</Config>
-  <Config Name="PUID" Target="PUID" Default="99" Mode="" Description="" Type="Variable" Display="advanced" Required="false" Mask="false">101</Config>
-  <Config Name="PGID" Target="PGID" Default="100" Mode="" Description="" Type="Variable" Display="advanced" Required="false" Mask="false">102</Config>
-  <Config Name="UMASK" Target="UMASK" Default="002" Mode="" Description="" Type="Variable" Display="advanced" Required="false" Mask="false">022</Config>
+  <Config Name="PUID" Target="PUID" Default="99" Mode="" Description="" Type="Variable" Display="advanced" Required="false" Mask="false">99</Config>
+  <Config Name="PGID" Target="PGID" Default="100" Mode="" Description="" Type="Variable" Display="advanced" Required="false" Mask="false">100</Config>
+  <Config Name="UMASK" Target="UMASK" Default="002" Mode="" Description="" Type="Variable" Display="advanced" Required="false" Mask="false">002</Config>
 </Container>

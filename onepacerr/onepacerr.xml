@@ -1,0 +1,74 @@
+<?xml version="1.0"?>
+<Container version="2">
+  <Name>onepacerr</Name>
+  <Repository>ghcr.io/eltharynd/onepacerr:latest</Repository>
+  <Network>bridge</Network>
+  <Shell>sh</Shell>
+  <Privileged>false</Privileged>
+  <Support>https://forums.unraid.net/topic/192298-support-soitoras-unraid-templates/</Support>
+  <Project>https://github.com/eltharynd/OnePacerr</Project>
+  <Overview>Automates One Pace downloads, organization, and metadata for Jellyfin (default), Plex, Emby, or a local folder.&#13;
+&#13;
+Read https://github.com/eltharynd/OnePacerr#readme for initial setup and environment variables, especially the first-run pipeline settings.&#13;
+&#13;
+Configure your media server and torrent client credentials using reachable URLs (not localhost), or enable Skip downloads for an existing library.&#13;
+&#13;
+Data maps /mnt/user/data to /data; adjust it to include your library and downloads. If other containers use different paths, set both fields in each mapping pair in Advanced View; otherwise leave both empty. Hardlinks require the same filesystem and volume mount.&#13;
+&#13;
+Runs as 99:100 via Extra Parameters; needs download read access and library read/write access. No appdata volume required. Configure through environment variables; WebUI opens a JSON status report.</Overview>
+  <Category>MediaApp:Video Downloaders: Tools:Utilities</Category>
+  <WebUI>http://[IP]:[PORT:3000]/api/v1/status/pipeline/report</WebUI>
+  <TemplateURL>https://raw.githubusercontent.com/Soitora/Unraid-Templates/refs/heads/main/onepacerr/onepacerr.xml</TemplateURL>
+  <Icon>https://raw.githubusercontent.com/Soitora/Unraid-Templates/refs/heads/main/onepacerr/logo.png</Icon>
+  <ExtraParams>--user=99:100</ExtraParams>
+  <Config Name="Status API port" Target="3000" Default="3000" Mode="tcp" Description="JSON status and health API. There is no graphical configuration interface." Type="Port" Display="always" Required="true" Mask="false">3000</Config>
+  <Config Name="Data" Target="/data" Default="/mnt/user/data" Mode="rw" Description="Existing share containing your library and torrent downloads. For example, /mnt/user/data/media/tv becomes /data/media/tv inside OnePacerr." Type="Path" Display="always" Required="true" Mask="false">/mnt/user/data</Config>
+  <Config Name="Media server" Target="LIBRARY_MEDIA_SERVER" Default="jellyfin|plex|emby|none" Mode="" Description="Select your media server, or none to organize a local folder. Fill in only the selected server's settings." Type="Variable" Display="always" Required="true" Mask="false">jellyfin</Config>
+  <Config Name="Series name" Target="LIBRARY_SERIES_NAME" Default="One Pace" Mode="" Description="Series name in your media server and default series folder name." Type="Variable" Display="always" Required="true" Mask="false">One Pace</Config>
+  <Config Name="Use hardlinks" Target="LIBRARY_USE_HARDLINKS" Default="false|true" Mode="" Description="Enable upstream's hardlink import option. Downloads and library must share the same filesystem and Docker volume mount, such as the single /data mount. Defaults to copying. See the GitHub README for details." Type="Variable" Display="always" Required="true" Mask="false">false</Config>
+  <Config Name="Local library root" Target="LIBRARY_NONE_ROOT_FOLDER" Default="/data/media/tv" Mode="" Description="Used only with media server none. Parent directory of the series folder, inside the Data mount." Type="Variable" Display="always" Required="false" Mask="false">/data/media/tv</Config>
+  <Config Name="Plex URL" Target="PLEX_URL" Default="" Mode="" Description="Required for plex, e.g. http://192.168.1.10:32400. Use an address reachable from the container, not localhost." Type="Variable" Display="always" Required="false" Mask="false"/>
+  <Config Name="Plex token" Target="PLEX_TOKEN" Default="" Mode="" Description="Required for plex. Authentication token for your Plex server." Type="Variable" Display="always" Required="false" Mask="true"/>
+  <Config Name="Plex library name" Target="PLEX_LIBRARY_NAME" Default="TV Shows" Mode="" Description="Exact name of the TV library in Plex." Type="Variable" Display="always" Required="false" Mask="false">TV Shows</Config>
+  <Config Name="Jellyfin URL" Target="JELLYFIN_URL" Default="" Mode="" Description="Required for jellyfin, e.g. http://192.168.1.10:8096. Do not use localhost." Type="Variable" Display="always" Required="false" Mask="false"/>
+  <Config Name="Jellyfin username" Target="JELLYFIN_USERNAME" Default="" Mode="" Description="Required for jellyfin. Account with permission to update library metadata." Type="Variable" Display="always" Required="false" Mask="false"/>
+  <Config Name="Jellyfin password" Target="JELLYFIN_PASSWORD" Default="" Mode="" Description="Required for jellyfin. Password for the selected account." Type="Variable" Display="always" Required="false" Mask="true"/>
+  <Config Name="Jellyfin library name" Target="JELLYFIN_LIBRARY_NAME" Default="Shows" Mode="" Description="Exact name of the TV library in Jellyfin." Type="Variable" Display="always" Required="false" Mask="false">Shows</Config>
+  <Config Name="Emby URL" Target="EMBY_URL" Default="" Mode="" Description="Required for emby, e.g. http://192.168.1.10:8096. Do not use localhost." Type="Variable" Display="always" Required="false" Mask="false"/>
+  <Config Name="Emby username" Target="EMBY_USERNAME" Default="" Mode="" Description="Required for emby. Account with permission to update library metadata." Type="Variable" Display="always" Required="false" Mask="false"/>
+  <Config Name="Emby password" Target="EMBY_PASSWORD" Default="" Mode="" Description="Required for emby. Password for the selected account." Type="Variable" Display="always" Required="false" Mask="true"/>
+  <Config Name="Emby library name" Target="EMBY_LIBRARY_NAME" Default="Shows" Mode="" Description="Exact name of the TV library in Emby." Type="Variable" Display="always" Required="false" Mask="false">Shows</Config>
+  <Config Name="Torrent client" Target="TORRENT_CLIENT" Default="qbittorrent|deluge|transmission|utorrent" Mode="" Description="Torrent client with its WebUI/API enabled. Deluge also needs its Label plugin enabled." Type="Variable" Display="always" Required="true" Mask="false">qbittorrent</Config>
+  <Config Name="Torrent client URL" Target="TORRENT_URL" Default="" Mode="" Description="Required unless Skip downloads is true. Use a reachable URL, e.g. http://192.168.1.10:8080, not localhost." Type="Variable" Display="always" Required="false" Mask="false"/>
+  <Config Name="Torrent username" Target="TORRENT_USER" Default="" Mode="" Description="Torrent client WebUI username, if the client uses one." Type="Variable" Display="always" Required="false" Mask="false"/>
+  <Config Name="Torrent password" Target="TORRENT_PASSWORD" Default="" Mode="" Description="Torrent client WebUI password." Type="Variable" Display="always" Required="false" Mask="true"/>
+  <Config Name="Skip downloads" Target="PIPELINE_SKIP_DOWNLOADS" Default="false|true" Mode="" Description="True disables torrent client integration and processes only your existing library." Type="Variable" Display="always" Required="true" Mask="false">false</Config>
+  <Config Name="Media server library path" Target="MOUNT_LIBRARY_MEDIA_SERVER" Default="" Mode="" Description="Library root as reported by your media server, e.g. /tv. Set together with OnePacerr library path, or leave BOTH empty when paths match." Type="Variable" Display="advanced" Required="false" Mask="false"/>
+  <Config Name="OnePacerr library path" Target="MOUNT_LIBRARY_ONEPACERR" Default="" Mode="" Description="Equivalent library root inside this container, e.g. /data/media/tv. Must exist under the Data mount. Set together with Media server library path." Type="Variable" Display="advanced" Required="false" Mask="false"/>
+  <Config Name="Torrent client download path" Target="MOUNT_DOWNLOADS_TORRENT" Default="" Mode="" Description="Download root as reported by the torrent client, e.g. /downloads. Set together with OnePacerr download path, or leave BOTH empty when paths match." Type="Variable" Display="advanced" Required="false" Mask="false"/>
+  <Config Name="OnePacerr download path" Target="MOUNT_DOWNLOADS_ONEPACERR" Default="" Mode="" Description="Equivalent download root inside this container, e.g. /data/torrents. Set together with Torrent client download path." Type="Variable" Display="advanced" Required="false" Mask="false"/>
+  <Config Name="Skip existing file verification" Target="PIPELINE_SKIP_VERIFY_PRESENT_FILES" Default="true|false" Mode="" Description="False hashes existing episodes to check for updated releases. Can take time on large libraries." Type="Variable" Display="advanced" Required="true" Mask="false">true</Config>
+  <Config Name="Skip existing file organization" Target="PIPELINE_SKIP_ORGANIZE_PRESENT_FILES" Default="true|false" Mode="" Description="False organizes and renames episodes already in the library." Type="Variable" Display="advanced" Required="true" Mask="false">true</Config>
+  <Config Name="Skip existing metadata updates" Target="PIPELINE_SKIP_UPDATE_METADATA_PRESENT_FILES" Default="true|false" Mode="" Description="False refreshes metadata for episodes already in the library. New imports still receive metadata when true." Type="Variable" Display="advanced" Required="true" Mask="false">true</Config>
+  <Config Name="Skip posters" Target="PIPELINE_SKIP_POSTERS" Default="false|true" Mode="" Description="True disables poster updates." Type="Variable" Display="advanced" Required="true" Mask="false">false</Config>
+  <Config Name="Include specials" Target="PIPELINE_INCLUDE_SPECIALS" Default="false|true" Mode="" Description="Also process special episodes." Type="Variable" Display="advanced" Required="true" Mask="false">false</Config>
+  <Config Name="Prefer extended cuts" Target="PIPELINE_PREFER_EXTENDED" Default="false|true" Mode="" Description="Prefer extended cuts when available." Type="Variable" Display="advanced" Required="true" Mask="false">false</Config>
+  <Config Name="Prefer alternate cuts" Target="PIPELINE_PREFER_ALTERNATE" Default="false|true" Mode="" Description="Prefer the alternate G-8 cut at the end of Skypiea." Type="Variable" Display="advanced" Required="true" Mask="false">false</Config>
+  <Config Name="Skip supplements" Target="PIPELINE_SKIP_SUPPLEMENTS" Default="false|true" Mode="" Description="Skip alternate edits that supplement incomplete arcs." Type="Variable" Display="advanced" Required="true" Mask="false">false</Config>
+  <Config Name="Include filters" Target="PIPELINE_FILTERS_INCLUDE" Default="" Mode="" Description="Optional comma-separated filters, e.g. S01,S02E01. Empty includes all episodes." Type="Variable" Display="advanced" Required="false" Mask="false"/>
+  <Config Name="Exclude filters" Target="PIPELINE_FILTERS_EXCLUDE" Default="" Mode="" Description="Optional comma-separated filters, e.g. S35,S36." Type="Variable" Display="advanced" Required="false" Mask="false"/>
+  <Config Name="Series folder name" Target="LIBRARY_SERIES_FOLDER_NAME" Default="" Mode="" Description="Optional override. Empty uses Series name." Type="Variable" Display="advanced" Required="false" Mask="false"/>
+  <Config Name="Create missing series" Target="LIBRARY_CREATE_SHOW_IF_NOT_FOUND" Default="true|false" Mode="" Description="Automatically create the series if missing from your media server." Type="Variable" Display="advanced" Required="true" Mask="false">true</Config>
+  <Config Name="Plex skip metadata files" Target="PLEX_SKIP_METADATA_FILES" Default="true|false" Mode="" Description="For Plex, update metadata through its API without writing NFO and poster files. False also writes those files." Type="Variable" Display="advanced" Required="true" Mask="false">true</Config>
+  <Config Name="Torrent category" Target="TORRENT_CATEGORY" Default="onepacerr" Mode="" Description="Category for downloads managed by OnePacerr." Type="Variable" Display="advanced" Required="true" Mask="false">onepacerr</Config>
+  <Config Name="Completed torrent category" Target="TORRENT_CATEGORY_ONCE_COMPLETED" Default="completed" Mode="" Description="Category assigned after importing completed downloads." Type="Variable" Display="advanced" Required="true" Mask="false">completed</Config>
+  <Config Name="Torrent check interval" Target="TORRENT_CHECK_INTERVAL" Default="60" Mode="" Description="Seconds between checks for completed downloads." Type="Variable" Display="advanced" Required="true" Mask="false">60</Config>
+  <Config Name="Torrent request timeout" Target="TORRENT_CLIENT_TIMEOUT" Default="10" Mode="" Description="Seconds to wait for a torrent client response." Type="Variable" Display="advanced" Required="true" Mask="false">10</Config>
+  <Config Name="Metadata poster set" Target="METADATA_POSTER_SET" Default="default" Mode="" Description="Poster set identifier, e.g. default, official, or mizzoufan523. See the project's poster set documentation." Type="Variable" Display="advanced" Required="true" Mask="false">default</Config>
+  <Config Name="Disable metadata WebSocket" Target="METADATA_DISABLE_WEBSOCKET" Default="false|true" Mode="" Description="True uses periodic metadata polling instead of live updates." Type="Variable" Display="advanced" Required="true" Mask="false">false</Config>
+  <Config Name="Metadata check interval" Target="METADATA_CHECK_INTERVAL" Default="3600" Mode="" Description="Polling interval in seconds; used only when metadata WebSocket is disabled." Type="Variable" Display="advanced" Required="true" Mask="false">3600</Config>
+  <Config Name="Log level" Target="LOG_LEVEL" Default="info|critical|error|warning|debug" Mode="" Description="Application log verbosity. Read output through Unraid's container logs." Type="Variable" Display="advanced" Required="true" Mask="false">info</Config>
+  <Config Name="PUID" Target="PUID" Default="99" Mode="" Description="" Type="Variable" Display="advanced" Required="false" Mask="false">99</Config>
+  <Config Name="PGID" Target="PGID" Default="100" Mode="" Description="" Type="Variable" Display="advanced" Required="false" Mask="false">100</Config>
+  <Config Name="UMASK" Target="UMASK" Default="002" Mode="" Description="" Type="Variable" Display="advanced" Required="false" Mask="false">002</Config>
+</Container>

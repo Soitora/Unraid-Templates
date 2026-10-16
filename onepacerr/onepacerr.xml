@@ -20,7 +20,7 @@ Runs as 99:100 via Extra Parameters; needs download read access and library read
   <WebUI>http://[IP]:[PORT:3000]/api/v1/status/pipeline/report</WebUI>
   <TemplateURL>https://raw.githubusercontent.com/Soitora/Unraid-Templates/refs/heads/main/onepacerr/onepacerr.xml</TemplateURL>
   <Icon>https://raw.githubusercontent.com/Soitora/Unraid-Templates/refs/heads/main/onepacerr/logo.png</Icon>
-  <ExtraParams>--user=99:100</ExtraParams>
+  <ExtraParams>--user=99:100 --restart unless-stopped</ExtraParams>
   <Config Name="Status API port" Target="3000" Default="3000" Mode="tcp" Description="JSON status and health API. There is no graphical configuration interface." Type="Port" Display="always" Required="true" Mask="false">3000</Config>
   <Config Name="Data" Target="/data" Default="/mnt/user/data" Mode="rw" Description="Existing share containing your library and torrent downloads. For example, /mnt/user/data/media/tv becomes /data/media/tv inside OnePacerr." Type="Path" Display="always" Required="true" Mask="false">/mnt/user/data</Config>
   <Config Name="Media server" Target="LIBRARY_MEDIA_SERVER" Default="jellyfin|plex|emby|none" Mode="" Description="Select your media server, or none to organize a local folder. Fill in only the selected server's settings." Type="Variable" Display="always" Required="true" Mask="false">jellyfin</Config>

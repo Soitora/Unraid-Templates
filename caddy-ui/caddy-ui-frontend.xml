@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<Container version="2">
+  <Name>caddy-ui-frontend</Name>
+  <Repository>zackwag/caddy-ui-frontend:latest</Repository>
+  <Registry>https://hub.docker.com/r/zackwag/caddy-ui-frontend/</Registry>
+  <Network>caddy-ui</Network>
+  <Shell>sh</Shell>
+  <Privileged>false</Privileged>
+  <Support>https://forums.unraid.net/topic/192298-support-soitoras-unraid-templates/</Support>
+  <Project>https://github.com/zackwag/caddy-ui</Project>
+  <Overview>Web interface for caddy/ui. Manage Caddyfiles, routes, TLS certificates, logs, and metrics. Requires caddy-ui-backend and an existing Caddy server.&#13;
+&#13;
+Select the same user-defined Docker bridge network for both UI containers and Caddy. You can use an existing custom bridge network: change Network Type in both templates to that network. If you need a new network, run "docker network create caddy-ui" in the Unraid terminal before installing and select "Custom: caddy-ui". Install and start caddy-ui-backend first, keeping both UI container names unchanged. The frontend connects to caddy-ui-backend:3001 through Docker DNS; the default bridge network does not provide this name resolution.&#13;
+&#13;
+Set External UI URL on the backend to the exact browser address, normally http://YOUR-UNRAID-IP:9877. Then open this WebUI, create the administrator, save the recovery key, and discover or add your Caddy server. Keep the installation private until administrator setup is complete.</Overview>
+  <Category>Tools:Utilities Network:Web</Category>
+  <WebUI>http://[IP]:[PORT:80]/</WebUI>
+  <TemplateURL>https://raw.githubusercontent.com/Soitora/Unraid-Templates/refs/heads/main/caddy-ui/caddy-ui-frontend.xml</TemplateURL>
+  <Icon>https://raw.githubusercontent.com/Soitora/Unraid-Templates/refs/heads/main/caddy-ui/logo.png</Icon>
+  <ExtraParams>--restart unless-stopped</ExtraParams>
+  <Config Name="WebUI port" Target="80" Default="9877" Mode="tcp" Description="Browser-facing port. If changed, update External UI URL on the backend to match." Type="Port" Display="always" Required="true" Mask="false">9877</Config>
+  <Config Name="Trusted upstream proxies" Target="CADDY_UI_TRUSTED_UPSTREAMS" Default="" Mode="" Description="Optional comma-separated IP addresses or narrow CIDRs of reverse proxies in front of this UI. Leave empty for direct access. Used to preserve client addresses and separate rate limits." Type="Variable" Display="advanced" Required="false" Mask="false"/>
+  <Config Name="PUID" Target="PUID" Default="99" Mode="" Description="" Type="Variable" Display="advanced" Required="false" Mask="false">99</Config>
+  <Config Name="PGID" Target="PGID" Default="100" Mode="" Description="" Type="Variable" Display="advanced" Required="false" Mask="false">100</Config>
+  <Config Name="UMASK" Target="UMASK" Default="002" Mode="" Description="" Type="Variable" Display="advanced" Required="false" Mask="false">002</Config>
+</Container>

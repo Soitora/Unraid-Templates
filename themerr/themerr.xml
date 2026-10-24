@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<Container version="2">
+  <Name>themerr</Name>
+  <Repository>lizardbyte/themerr:latest</Repository>
+  <Network>bridge</Network>
+  <Shell>sh</Shell>
+  <Privileged>false</Privileged>
+  <Support>https://forums.unraid.net/topic/192298-support-soitoras-unraid-templates/</Support>
+  <Project>https://github.com/LizardByte/Themerr</Project>
+  <Overview>Themerr manages theme songs for Plex and Jellyfin using ThemerrDB. The web UI is available on port 9494. Port 9495 is used by the Jellyfin connector when the Themerr admin UI uses a self-signed certificate.&#13;
+&#13;
+Before connecting a media server, create a persistent key file outside this container's /config directory. On Unraid, run:&#13;
+&#13;
+mkdir -p /mnt/user/appdata/themerr &amp;&amp; python3 -c 'import base64, os; print(base64.urlsafe_b64encode(os.urandom(32)).decode())' &gt; /mnt/user/appdata/themerr/themerr-tokens.key &amp;&amp; chown 99:100 /mnt/user/appdata/themerr/themerr-tokens.key &amp;&amp; chmod 600 /mnt/user/appdata/themerr/themerr-tokens.key.&#13;
+&#13;
+Keep this file private and keep the same key when recreating the container. Losing the key requires signing in again.</Overview>
+  <Category>MediaApp:Other MediaApp:Music Network:Web</Category>
+  <WebUI>http://[IP]:[PORT:9494]/</WebUI>
+  <TemplateURL>https://raw.githubusercontent.com/Soitora/Unraid-Templates/refs/heads/main/themerr/themerr.xml</TemplateURL>
+  <Icon>https://raw.githubusercontent.com/Soitora/Unraid-Templates/refs/heads/main/themerr/logo.png</Icon>
+  <ExtraParams>--user=99:100</ExtraParams>
+  <Config Name="WebUI port" Target="9494" Default="9494" Mode="tcp" Description="The browser-accessible Themerr admin UI." Type="Port" Display="always" Required="true" Mask="false">9494</Config>
+  <Config Name="Jellyfin connector port" Target="9495" Default="9495" Mode="tcp" Description="Expose this port when Jellyfin must access the connector over HTTP because the Themerr admin UI uses a self-signed certificate. Configure Jellyfin with a host address reachable from Jellyfin; localhost inside another container refers to that container." Type="Port" Display="always" Required="false" Mask="false">9495</Config>
+  <Config Name="Configuration" Target="/config" Default="/mnt/user/appdata/themerr/config" Mode="rw" Description="Persistent application configuration and database." Type="Path" Display="always" Required="true" Mask="false">/mnt/user/appdata/themerr/config</Config>
+  <Config Name="Timezone" Target="TZ" Default="Etc/UTC" Mode="" Description="Container timezone, such as Europe/Stockholm." Type="Variable" Display="always" Required="true" Mask="false">Etc/UTC</Config>
+  <Config Name="Token encryption key file" Target="/run/secrets/themerr_token_key" Default="/mnt/user/appdata/themerr/themerr-tokens.key" Mode="ro" Description="Create this file before starting the container. Keep it private and retain the same file across container recreations; losing it requires signing in again." Type="Path" Display="always" Required="true" Mask="false">/mnt/user/appdata/themerr/themerr-tokens.key</Config>
+  <Config Name="Token encryption key file path" Target="THEMERR_TOKEN_KEY_FILE" Default="/run/secrets/themerr_token_key" Mode="" Description="Container path to the read-only token encryption key file." Type="Variable" Display="advanced" Required="true" Mask="false">/run/secrets/themerr_token_key</Config>
+  <Config Name="PUID" Target="PUID" Default="99" Mode="" Description="" Type="Variable" Display="advanced" Required="false" Mask="false">99</Config>
+  <Config Name="PGID" Target="PGID" Default="100" Mode="" Description="" Type="Variable" Display="advanced" Required="false" Mask="false">100</Config>
+  <Config Name="UMASK" Target="UMASK" Default="002" Mode="" Description="" Type="Variable" Display="advanced" Required="false" Mask="false">002</Config>
+</Container>
